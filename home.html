@@ -216,11 +216,67 @@
             border-left: 4px solid #f8bbd9;
         }
 
+        .navigation-buttons {
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #f8bbd9, #fce4ec);
+            border: 2px solid rgba(216, 27, 96, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(248, 187, 217, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 100px;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(248, 187, 217, 0.4);
+            background: linear-gradient(135deg, #f48fb1, #f8bbd9);
+        }
+
+        .nav-button:active {
+            transform: translateY(-1px);
+        }
+
+        .button-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .button-text {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ad1457;
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
             .title { font-size: 2rem; }
             .subtitle { font-size: 1.1rem; }
             .counter-grid { grid-template-columns: repeat(2, 1fr); }
             .main-card { padding: 2rem 1rem; }
+            .nav-button { 
+                padding: 1rem 0.5rem; 
+                min-height: 80px; 
+            }
+            .button-icon { font-size: 1.5rem; }
+            .button-text { font-size: 0.9rem; }
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -230,6 +286,10 @@
  <body>
   <div class="container">
    <div class="floating-hearts" id="heartsContainer"></div>
+   <div class="navigation-buttons">
+    <div class="button-grid"><button class="nav-button" onclick="showSection('story')"> <span class="button-icon">📖</span> <span class="button-text">Our Story</span> </button> <button class="nav-button" onclick="showSection('treat')"> <span class="button-icon">🍰</span> <span class="button-text">我请吃！</span> </button> <button class="nav-button" onclick="showSection('countdown')"> <span class="button-icon">⏰</span> <span class="button-text">Countdown</span> </button> <button class="nav-button" onclick="showSection('target')"> <span class="button-icon">🎯</span> <span class="button-text">Target</span> </button>
+    </div>
+   </div>
    <div class="main-card">
     <h1 class="title" id="mainTitle">Happy Birthday My Love! 🎉</h1>
     <p class="subtitle" id="subtitle">To the most amazing person in my life ✨</p>
@@ -343,6 +403,27 @@
             ]);
         }
 
+        function showSection(section) {
+            const messages = {
+                story: "📖 Our beautiful love story began on February 13, 2022. From that magical day, every moment with you has been a precious chapter in our fairy tale. You've filled my life with laughter, joy, and endless love! 💕",
+                treat: "🍰 我请吃！Let me treat you to all your favorite foods! Whether it's that cozy café you love, the dessert place we discovered together, or trying something completely new - today is all about spoiling you with delicious treats! 🥰",
+                countdown: "⏰ Every second with you is precious! Our love grows stronger with each passing moment. Time flies when I'm with you, but every memory we create is timeless and beautiful! ⭐",
+                target: "🎯 My target? To make you smile every single day! To create more beautiful memories together, to support your dreams, and to love you more with each sunrise. You're my forever goal! 💖"
+            };
+
+            const loveMessageElement = document.getElementById('loveMessage');
+            loveMessageElement.textContent = messages[section];
+            
+            // Add a little animation
+            loveMessageElement.style.transform = 'scale(0.95)';
+            loveMessageElement.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                loveMessageElement.style.transform = 'scale(1)';
+                loveMessageElement.style.opacity = '1';
+            }, 150);
+        }
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             updateCounter();
@@ -360,5 +441,5 @@
             }
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99fc6fda54b5cac4',t:'MTc2MzM1MzI0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99fc7cfec6abb4d0',t:'MTc2MzM1Mzc3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
