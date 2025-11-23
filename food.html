@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Slot Machine</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: radial-gradient(circle at top left, #ffd1e8, #f8bbd0, #fce4ec);
+            position: relative;
+            overflow: hidden; /* Hearts will float */
+            font-family: 'Arial', sans-serif;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #880e4f;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #f48fb1;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #f8bbd0; }
+            to { text-shadow: 0 0 25px #f06292; }
+        }
+
+        .slot-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+            position: relative;
+        }
+
+        .slot-box {
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 15px;
+            background: #fce4ec;
+            border: 3px solid #f06292;
+            margin-bottom: 20px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ad1457;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            background: #d81b60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background: #ad1457;
+            transform: scale(1.05);
+        }
+
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+            /* Mobile responsive */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+                text-align: center;
+                padding: 0 15px;
+            }
+            .slot-container {
+                width: 85%;
+                padding: 20px;
+            }
+            .slot-box {
+                font-size: 1.6rem;
+                height: 55px;
+            }
+            button {
+                width: 100%;
+                padding: 14px;
+                font-size: 1.1rem;
+            }
+        }
+            /* Floating shining hearts */
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 105, 180, 0.8);
+            animation: floatUp 6s linear infinite;
+            filter: drop-shadow(0 0 10px hotpink);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.8) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-20vh) scale(1.4) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<img src="img/couplefood.png" alt="Love Image" style="width:300px; margin-bottom:30px; filter: drop-shadow(0 0 10px pink);">
+
+    <h1>要吃什么？我请！</h1> 
+
+    <div class="slot-container">
+        <div class="slot-box" id="slot">Tap Spin</div>
+        <button onclick="spin()">Spin ❤️</button>
+    </div>
+
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        const options = ["JP FOOD🍣", "WESTERN FOOD🍽️", "KR BBQ🥩", "RICE🍚", "HOTPOT🍲", "WHATEVER YOU WANT🥣"];
+
+        function spin() {
+            const slot = document.getElementById("slot");
+            let count = 0;
+            const interval = setInterval(() => {
+                slot.textContent = options[Math.floor(Math.random() * options.length)];
+                count++;
+                if (count > 20) {
+                    clearInterval(interval);
+                    finalResult();
+                }
+            }, 100);
+        }
+
+        function finalResult() {
+            const slot = document.getElementById("slot");
+            const final = options[Math.floor(Math.random() * options.length)];
+            slot.textContent = final;
+            slot.style.background = "#f8bbd0";
+            slot.style.color = "#880e4f";
+            launchConfetti();
+        }
+
+        function launchConfetti() {
+            const confettiBox = document.getElementById("confetti");
+            confettiBox.innerHTML = "";
+            for (let i = 0; i < 40; i++) {
+                const piece = document.createElement("div");
+                piece.style.width = "10px";
+                piece.style.height = "10px";
+                piece.style.background = randomColor();
+                piece.style.position = "absolute";
+                piece.style.left = Math.random() * 100 + "%";
+                piece.style.animation = `fall ${2 + Math.random()*3}s linear infinite`;
+                piece.style.opacity = 0.8;
+                piece.style.transform = `rotate(${Math.random()*360}deg)`;
+                confettiBox.appendChild(piece);
+            }
+        }
+
+        function randomColor() {
+            const colors = ["#f06292", "#f8bbd0", "#ef9a9a", "#ce93d8", "#ba68c8"]; 
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+
+</body>
+</html>
+
