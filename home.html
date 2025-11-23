@@ -287,7 +287,11 @@
   <div class="container">
    <div class="floating-hearts" id="heartsContainer"></div>
    <div class="navigation-buttons">
-    <div class="button-grid"><button class="nav-button" onclick="showSection('story')"> <span class="button-icon">📖</span> <span class="button-text">Our Story</span> </button> <button class="nav-button" onclick="showSection('treat')"> <span class="button-icon">🍰</span> <span class="button-text">我请吃！</span> </button> <button class="nav-button" onclick="showSection('countdown')"> <span class="button-icon">⏰</span> <span class="button-text">Countdown</span> </button> <button class="nav-button" onclick="showSection('target')"> <span class="button-icon">🎯</span> <span class="button-text">Target</span> </button>
+    <div class="button-grid">
+        <button class="nav-button" onclick="navigateTo('story.html')"> <span class="button-icon">📖</span> <span class="button-text">Our Story</span> </button>
+         <button class="nav-button" onclick="navigateTo('food.html')"> <span class="button-icon">🍰</span> <span class="button-text">我请吃！</span> </button> 
+         <button class="nav-button" onclick="showSection('countdown')"> <span class="button-icon">⏰</span> <span class="button-text">Countdown</span> </button> 
+         <button class="nav-button" onclick="showSection('target')"> <span class="button-icon">🎯</span> <span class="button-text">Target</span> </button>
     </div>
    </div>
    <div class="main-card">
@@ -395,6 +399,10 @@
             };
         }
 
+function navigateTo(page) {
+    window.location.href = page;
+}
+
         function mapToEditPanelValues(config) {
             return new Map([
                 ["main_title", config.main_title || defaultConfig.main_title],
@@ -443,3 +451,4 @@
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99fc7cfec6abb4d0',t:'MTc2MzM1Mzc3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
